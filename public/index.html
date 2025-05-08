@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vier Gewinnt</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Vier Gewinnt</h1>
+    </header>
+
+    <div id="welcome-screen" class="screen active">
+      <div class="welcome-card">
+        <h2>Willkommen bei Vier Gewinnt</h2>
+        <div class="button-group">
+          <button id="single-player-btn" class="btn primary-btn">Einzelspieler</button>
+          <button id="create-game-btn" class="btn primary-btn">Neues Spiel erstellen</button>
+          <button id="join-game-btn" class="btn secondary-btn">Einem Spiel beitreten</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="join-screen" class="screen">
+      <div class="join-card">
+        <h2>Einem Spiel beitreten</h2>
+        <div class="form-group">
+          <label for="room-id">Spiel-Code eingeben:</label>
+          <input type="text" id="room-id" maxlength="6" placeholder="z.B. ABC123">
+        </div>
+        <div class="button-group">
+          <button id="join-room-btn" class="btn primary-btn">Beitreten</button>
+          <button class="btn back-btn">Zurück</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="waiting-screen" class="screen">
+      <div class="waiting-card">
+        <h2>Warte auf Mitspieler</h2>
+        <div class="loading-spinner"></div>
+        <div class="room-info">
+          <p>Teile diesen Code mit deinem Mitspieler:</p>
+          <div class="room-code-container">
+            <span id="room-code" class="room-code"></span>
+            <button id="copy-code-btn" class="btn icon-btn"><i class="fas fa-copy"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="game-screen" class="screen">
+      <div class="game-info">
+        <div id="player-display" class="player-display">
+          <div class="player player-0 current">
+            <div class="player-token"></div>
+            <span>Spieler 1</span>
+          </div>
+          <div class="player player-1">
+            <div class="player-token"></div>
+            <span id="player2-name">Spieler 2</span>
+          </div>
+        </div>
+        <div id="game-status" class="game-status"></div>
+      </div>
+      
+      <div id="board-container" class="board-container">
+        <div id="column-selector" class="column-selector">
+          <div class="column-marker" data-column="0"></div>
+          <div class="column-marker" data-column="1"></div>
+          <div class="column-marker" data-column="2"></div>
+          <div class="column-marker" data-column="3"></div>
+          <div class="column-marker" data-column="4"></div>
+          <div class="column-marker" data-column="5"></div>
+          <div class="column-marker" data-column="6"></div>
+        </div>
+        <div id="game-board" class="game-board">
+          <!-- The game board will be generated with JavaScript -->
+        </div>
+      </div>
+      
+      <div class="game-controls">
+        <button id="reset-game-btn" class="btn secondary-btn" disabled>Neues Spiel</button>
+        <button id="leave-game-btn" class="btn danger-btn">Spiel verlassen</button>
+      </div>
+    </div>
+
+    <div id="game-over-screen" class="screen">
+      <div class="game-over-card">
+        <h2 id="game-result">Spielende</h2>
+        <div id="winner-display" class="winner-display"></div>
+        <div class="button-group">
+          <button id="play-again-btn" class="btn primary-btn">Noch einmal spielen</button>
+          <button id="exit-game-btn" class="btn secondary-btn">Zurück zum Hauptmenü</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="notification" class="notification hidden">
+      <div class="notification-content">
+        <span id="notification-message"></span>
+        <button id="notification-close" class="notification-close">&times;</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="app.js"></script>
+</body>
+</html> 
